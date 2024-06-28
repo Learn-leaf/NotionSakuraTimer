@@ -15,17 +15,24 @@
             height: 100vh;
             background: url('sakura.jpg') no-repeat center center/cover;
         }
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
         #timer {
-            position: relative;
             color: white;
             font-size: 7em; /* Enlarge the font size of the timer */
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            margin-top: 20px; /* Add some margin to ensure no overlap */
         }
         #controls {
-            position: relative;
-            bottom: 50px;
-            display: flex;
-            gap: 10px;
+            margin-bottom: 15px; /* Ensure buttons are at most 15px above the bottom */
         }
         button {
             background: linear-gradient(to bottom, #ffcccc, #ff6666);
@@ -49,16 +56,6 @@
         html, body {
             height: 100%;
             overflow: hidden;
-        }
-        #container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-            max-width: 600px;
-            margin: auto;
         }
     </style>
 </head>
