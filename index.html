@@ -9,30 +9,31 @@
             margin: 0;
             font-family: 'Cute Font', cursive;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             background: url('sakura.jpg') no-repeat center center/cover;
         }
         #container {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            height: 100%;
             width: 100%;
             max-width: 600px;
-            margin: auto;
+            height: 100%;
         }
         #timer {
             color: white;
             font-size: 7em; /* Enlarge the font size of the timer */
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            margin-top: 20px; /* Add some margin to ensure no overlap */
+            margin-bottom: 20px; /* Add some margin to ensure no overlap */
         }
         #controls {
-            margin-bottom: 15px; /* Ensure buttons are at most 15px above the bottom */
+            position: absolute;
+            bottom: 15px; /* Ensure buttons are at most 15px above the bottom */
+            display: flex;
+            gap: 10px;
         }
         button {
             background: linear-gradient(to bottom, #ffcccc, #ff6666);
