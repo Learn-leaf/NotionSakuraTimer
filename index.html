@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Cute Font', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('sakura.jpg') no-repeat center center/cover;
+        }
+        #timer {
+            position: relative;
+            color: white;
+            font-size: 5em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        #controls {
+            position: absolute;
+            bottom: 50px;
+        }
+        button {
+            background: pink;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        button:hover {
+            background: lightpink;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">0:00</div>
+    <div id="controls">
+        <button onclick="setTimer(15)">15:00</button>
+        <button onclick="setTimer(30)">30:00</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="stopTimer()">Stop</button>
+    </div>
+
+    <audio id="music" loop>
+        <source src="calm-forest-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        let timerInterval;
+        let currentTime = 0;
+        let isPaused = false;
+        const timerElement = document.getElementById('timer');
+        const music = document.getElementById('music');
+        
+        function setTimer(minutes) {
+            currentTime += minutes * 60;
+            startTimer();
+        }
+        
+        function startTimer() {
+            clearInterval(timerInterval);
+            music.play();
+            document.body.style.backgroundImage = "url('sakura.gif')";
+            isPaused = false;
+            timerInterval = setInterval(() => {
+                if (currentTime <= 0) {
+                    stopTimer();
+                    return;
+                }
+                currentTime--;
+                updateTimerDisplay();
+            }, 1000);
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(currentTime / 60);
+            const seconds = currentTime % 60;
+            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+        
+        function pauseTimer() {
+            if (isPaused) {
+                startTimer();
+            } else {
+                clearInterval(timerInterval);
+                music.pause();
+                isPaused = true;
+            }
+        }
+        
+        function stopTimer() {
+            clearInterval(timerInterval);
+            music.pause();
+            music.currentTime = 0;
+            currentTime = 0;
+            updateTimerDisplay();
+            document.body.style.backgroundImage = "url('sakura.jpg')";
+        }
+    </script>
+</body>
+</html>
