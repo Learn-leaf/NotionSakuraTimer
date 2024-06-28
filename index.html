@@ -18,15 +18,17 @@
         #timer {
             position: relative;
             color: white;
-            font-size: 5em;
+            font-size: 7em; /* Enlarge the font size of the timer */
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
         #controls {
-            position: absolute;
+            position: relative;
             bottom: 50px;
+            display: flex;
+            gap: 10px;
         }
         button {
-            background: pink;
+            background: linear-gradient(to bottom, #ffcccc, #ff6666);
             border: none;
             padding: 15px 30px;
             margin: 10px;
@@ -34,19 +36,41 @@
             cursor: pointer;
             border-radius: 10px;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-family: 'Cute Font', sans-serif; /* Use the same font style but not cursive */
         }
         button:hover {
-            background: lightpink;
+            background: linear-gradient(to bottom, #ff9999, #ff3333);
+        }
+        button:active {
+            transform: translateY(2px);
+        }
+        /* Ensure the aspect ratio is maintained */
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
         }
     </style>
 </head>
 <body>
-    <div id="timer">0:00</div>
-    <div id="controls">
-        <button onclick="setTimer(15)">15:00</button>
-        <button onclick="setTimer(30)">30:00</button>
-        <button onclick="pauseTimer()">Pause</button>
-        <button onclick="stopTimer()">Stop</button>
+    <div id="container">
+        <div id="timer">0:00</div>
+        <div id="controls">
+            <button onclick="setTimer(15)">15:00</button>
+            <button onclick="setTimer(30)">30:00</button>
+            <button onclick="pauseTimer()">Pause</button>
+            <button onclick="stopTimer()">Stop</button>
+        </div>
     </div>
 
     <audio id="music" loop>
